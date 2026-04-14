@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Create Group{% endblock %}
+
+{% block content %}
+<div class="form-shell">
+    <div class="form-card">
+        <div class="section-tag">Groups</div>
+        <h1>Create a new group</h1>
+        <p class="section-subtext">Start by creating a group for your trip, rent, event, or shared spending.</p>
+
+        <form method="POST" class="premium-form">
+            <div class="input-group">
+                <label for="group_name">Group Name</label>
+                <input type="text" id="group_name" name="group_name" placeholder="e.g. Goa Trip" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Create Group</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

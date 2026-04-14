@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Smart Expense Splitter{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="{{ url_for('home') }}" class="brand">
+                <span class="brand-mark">₹</span>
+                <span>Smart Expense Splitter</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('add_group') }}">Groups</a>
+                <a href="{{ url_for('add_member') }}">Members</a>
+                <a href="{{ url_for('add_expense') }}">Expenses</a>
+                <a href="{{ url_for('balances') }}">Balances</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

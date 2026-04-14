@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Smart Expense Splitter{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-main">
+        <div class="hero-badge">Modern group expense manager</div>
+        <h1>Track shared spending without the mess.</h1>
+        <p>
+            Create groups, add members, record expenses, and automatically compute
+            who owes whom with a cleaner and smarter settlement workflow.
+        </p>
+
+        <div class="hero-actions">
+            <a href="{{ url_for('add_group') }}" class="btn btn-primary">Create Group</a>
+            <a href="{{ url_for('add_expense') }}" class="btn btn-secondary">Add Expense</a>
+        </div>
+    </div>
+
+    <div class="hero-side">
+        <div>
+            <h3>Why this app works</h3>
+            <p>
+                A focused dashboard for shared expenses with simple flows,
+                clear balances, and optimized settlements.
+            </p>
+        </div>
+
+        <div class="metric-stack">
+            <div class="metric-card">
+                <span>Workflow</span>
+                <strong>Group → Members → Expense → Settlement</strong>
+            </div>
+            <div class="metric-card">
+                <span>Best use case</span>
+                <strong>Trips, rent, events, and shared outings</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-grid">
+    <div class="dash-card">
+        <div class="dash-icon">👥</div>
+        <h3>Create Groups</h3>
+        <p>Separate spending by trip, event, flat, or occasion.</p>
+        <a href="{{ url_for('add_group') }}" class="card-link">Go to groups</a>
+    </div>
+
+    <div class="dash-card">
+        <div class="dash-icon">🧑</div>
+        <h3>Add Members</h3>
+        <p>Assign participants to groups so splits are tracked correctly.</p>
+        <a href="{{ url_for('add_member') }}" class="card-link">Go to members</a>
+    </div>
+
+    <div class="dash-card">
+        <div class="dash-icon">💸</div>
+        <h3>Record Expenses</h3>
+        <p>Store who paid, how much was paid, and who participated.</p>
+        <a href="{{ url_for('add_expense') }}" class="card-link">Go to expenses</a>
+    </div>
+
+    <div class="dash-card">
+        <div class="dash-icon">📈</div>
+        <h3>See Balances</h3>
+        <p>Check net balances and view simplified settlements instantly.</p>
+        <a href="{{ url_for('balances') }}" class="card-link">Go to balances</a>
+    </div>
+</section>
+{% endblock %}

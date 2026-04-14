@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Add Expense{% endblock %}
+
+{% block content %}
+<div class="form-shell">
+    <div class="form-card">
+        <div class="section-tag">Expenses</div>
+        <h1>Add an expense</h1>
+        <p class="section-subtext">Enter the expense details and select the members involved in the split.</p>
+
+        <form method="POST" class="premium-form">
+            <div class="input-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" placeholder="Hotel, dinner, cab..." required>
+            </div>
+
+            <div class="input-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" step="0.01" placeholder="Enter amount" required>
+            </div>
+
+            <div class="input-group">
+                <label for="group_id">Group</label>
+                <select id="group_id" name="group_id" required>
+                    {% for group in groups %}
+                        <option value="{{ group.id }}">{{ group.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="paid_by">Paid By</label>
+                <select id="paid_by" name="paid_by" required>
+                    {% for member in members %}
+                        <option value="{{ member.id }}">{{ member.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Participants</label>
+                <div class="participant-grid">
+                    {% for member in members %}
+                    <label class="participant-chip">
+                        <input type="checkbox" name="participants" value="{{ member.id }}">
+                        <span>{{ member.name }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Add Expense</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

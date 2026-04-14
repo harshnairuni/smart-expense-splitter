@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Add Member{% endblock %}
+
+{% block content %}
+<div class="form-shell">
+    <div class="form-card">
+        <div class="section-tag">Members</div>
+        <h1>Add a member</h1>
+        <p class="section-subtext">Choose a group and add the participant to it.</p>
+
+        <form method="POST" class="premium-form">
+            <div class="input-group">
+                <label for="member_name">Member Name</label>
+                <input type="text" id="member_name" name="member_name" placeholder="Enter member name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="group_id">Select Group</label>
+                <select id="group_id" name="group_id" required>
+                    {% for group in groups %}
+                        <option value="{{ group.id }}">{{ group.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Add Member</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

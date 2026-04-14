@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Balances{% endblock %}
+
+{% block content %}
+<section class="top-summary">
+    <div class="summary-card">
+        <div>
+            <h2>Balances overview</h2>
+            <p>See each member’s paid amount, owed amount, and net settlement status.</p>
+        </div>
+        <div class="summary-pill">Live Calculation</div>
+    </div>
+</section>
+
+<section class="stats-row">
+    <div class="mini-stat">
+        <span>Total People</span>
+        <strong>{{ balances|length }}</strong>
+    </div>
+    <div class="mini-stat">
+        <span>Settlement Logic</span>
+        <strong>Greedy Matching</strong>
+    </div>
+    <div class="mini-stat">
+        <span>Project Status</span>
+        <strong>Working</strong>
+    </div>
+</section>
+
+<section class="table-card">
+    <div class="card-header">
+        <h2>Individual balances</h2>
+        <p>Current financial position of each participant</p>
+    </div>
+
+    <div class="table-wrap">
+        <table class="premium-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Paid</th>
+                    <th>Owes</th>
+                    <th>Net Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in balances %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>₹{{ item.paid }}</td>
+                    <td>₹{{ item.owes }}</td>
+                    <td>
+                        <span class="
+                            balance-pill
+                            {% if item.balance > 0 %}
+                                pill-positive
+                            {% elif item.balance < 0 %}
+                                pill-negative
+                            {% else %}
+                                pill-neutral
+                            {% endif %}
+                        ">
+                            ₹{{ item.balance }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="settlement-card">
+    <div class="card-header">
+        <h2>Simplified settlements</h2>
+        <p>Recommended payments to settle balances efficiently</p>
+    </div>
+
+    {% if settlements %}
+        <div class="settlement-grid">
+            {% for s in settlements %}
+            <div class="settlement-item">
+                <div class="settle-from">{{ s.from }}</div>
+                <div class="settle-arrow">→</div>
+                <div class="settle-to">{{ s.to }}</div>
+                <div class="settle-amount">₹{{ s.amount }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>No settlements pending</h3>
+            <p>All balances are already settled.</p>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
